@@ -1,0 +1,65 @@
+{% extends './backend/backbody.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+    {% if hotel %}
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">LISTE DES CHAUFFEURS</h3>
+            </div>
+            <div class="card-body p-0">
+                <table id="chauffeur" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th style="width: 10px">#</th>
+                        <th>nom</th>
+                        <th>tarif</th>
+
+
+                        <th>Action</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for h in hotel %}
+                    <tr>
+                        <td>{{ h.idHotel }}</td>
+                        <td>{{ h.nom }}</td>
+                        <td>{{ h.tarif }}</td>
+
+                        <td>
+                            <a class="btn btn-block btn-info" href="{{ path('detail_hotel',{'idHotel':h.idHotel}) }}" > detail</a>
+
+                        </td>
+                        <td>
+                            <a class="btn btn-block btn-success" href="{{ path('edit_hotel',{'idHotel':h.idHotel}) }}" > modifier</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-block btn-danger" href="{{ path('delete_hotel',{'idHotel':h.idHotel}) }} " >supprimer </a>
+                        </td>
+
+            </td>
+            </tr>
+
+            {% endfor %}
+            </tbody>
+
+            </table>
+        </div>
+        <div class="navigation">
+            {{ knp_pagination_render(hotel) }}
+        </div>
+    {% else %}
+        <div class="container">
+            <table>
+                <thead>
+                <th>aucun chauffeur trouvée</th>
+                <th><a class="example_b" href="{{ path('add_hotel') }}">Ajouter un hotel</a></th>
+                </thead>
+            </table>
+
+        </div>
+
+    {% endif %}
+{% endblock content %}
