@@ -1,0 +1,86 @@
+
+
+
+{% extends 'frontend/headerfooterfront.html.twig' %}
+{% block content %}
+<main>
+
+    <!-- slider Area Start-->
+    <div class="slider-area ">
+        <!-- Mobile Menu -->
+        <div class="slider-active">
+            <div class="single-slider hero-overly  slider-height d-flex align-items-center" data-background="assets/img/hero/h1_hero.jpg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-9 col-lg-9 col-md-9">
+                            <div class="hero__caption">
+                                <h1>Create  <span>Your Acount!</span> </h1>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Forum user-->
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+    <h1>User index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Mail</th>
+                <th>Password</th>
+                <th>Re_type_Password</th>
+                <th>Role</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.nom }}</td>
+                <td>{{ user.prenom }}</td>
+                <td>{{ user.mail }}</td>
+                <td>{{ user.mdp }}</td>
+                <td>{{ user.criptedMdp }}</td>
+                <td>{{ user.role }}</td>
+                <td>
+                    <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
+                    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('user_new') }}">Create new</a>
+{% endblock %}
+
+
+  <!-- Forum user-->
+               
+</main>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

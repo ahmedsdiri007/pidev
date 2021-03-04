@@ -1,0 +1,54 @@
+
+
+
+{% extends 'frontend/headerfooterfront.html.twig' %}
+{% block content %}
+<main>
+
+    <!-- slider Area Start-->
+    <div class="slider-area ">
+        <!-- Mobile Menu -->
+        <div class="slider-active">
+            <div class="single-slider hero-overly  slider-height d-flex align-items-center" data-background="assets/img/hero/h1_hero.jpg">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-9 col-lg-9 col-md-9">
+                            <div class="hero__caption">
+                                <h1>Create  <span>Your Acount!</span> </h1>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Forum user-->
+
+             
+
+{% block title %}Edit User{% endblock %}
+
+{% block body %}
+    <h1>Edit User</h1>
+
+    {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('user_index') }}">back to list</a>
+
+    {{ include('user/_delete_form.html.twig') }}
+
+{% endblock %}
+
+  <!-- Forum user-->
+               
+</main>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
