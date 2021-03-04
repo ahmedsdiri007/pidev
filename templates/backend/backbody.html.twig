@@ -13,9 +13,11 @@
     <link rel="stylesheet" href="{{ asset('backend/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('backend/dist/css/adminlte.min.css') }}">
+    <!--<link rel="stylesheet" href="{{ asset('backend/dist/css/alt/adminlte.pages.css') }}">-->
+
 </head>
 
-
+{% block back %}
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
 
@@ -49,7 +51,7 @@
                         <div class="input-group input-group-sm">
                             <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
                             <div class="input-group-append">
-                                <button class="btn btn-navbar" type="submit">
+                                <button class="nav-link" type="submit">
                                     <i class="fas fa-search"></i>
                                 </button>
                                 <button class="btn btn-navbar" type="button" data-widget="navbar-search">
@@ -78,10 +80,10 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
-                    <img src="{{ asset('backend/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+                    <img src="{{ asset('backend/dist/img/leila1.jpg') }}" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">Alexander Pierce</a>
+                    <a href="#" class="d-block">Leila Jbili</a>
                 </div>
             </div>
 
@@ -117,6 +119,14 @@
                                     <p>Dashboard v1</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+
+                                <a href="{{ path('transport_new') }}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Transport</p>
+                                </a>
+
+                            </li>
 
                         </ul>
                     </li>
@@ -127,16 +137,16 @@
         </div>
         <!-- /.sidebar -->
     </aside>
-
+{% endblock %}
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
-                    <div class="col-sm-6">
+                    <!--<div class="col-sm-6">
                         <h1 class="m-0">Dashboard v2</h1>
-                    </div><!-- /.col -->
+                    </div> /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
 

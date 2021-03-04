@@ -1,0 +1,54 @@
+{% extends 'backend/backbody.html.twig' %}
+
+{% block content %}
+    <h1>Transport index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id Transport</th>
+                <th>Type Vehicule</th>
+                <th>dispo</th>
+                <th>indispo</th>
+                <th>action</th>
+
+
+
+
+            </tr>
+
+        </thead>
+        <tbody>
+        {% for transport in transports %}
+
+            <tr>
+                <td>{{ transport.idTransport }}</td>
+                <td>{{ transport.typeVehicule }}</td>
+                <td>{{ transport.dispo ? transport.dispo|date('Y-m-d') : '' }}</td>
+                <td>{{ transport.indispo ? transport.indispo|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('transport_show', {'idTransport': transport.idTransport}) }}">show</a>
+                    <a href="{{ path('transport_edit', {'idTransport': transport.idTransport}) }}">edit</a>
+                    <form method="post" action="{{ path('transport_delete', {'idTransport': transport.idTransport}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ transport.idTransport) }}">
+                        <button class="btn">Delete</button>
+                    </form>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('transport_new') }}">Create new</a>
+
+
+
+
+
+{% endblock %}

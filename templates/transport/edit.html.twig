@@ -1,0 +1,12 @@
+{% extends 'backend/backbody.html.twig' %}
+{% block content %}
+{% block body %}
+    <h1>Edit Transport</h1>
+
+    {{ include('transport/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('transport_index') }}" class=".btn-white">back to list</a>
+
+    {{ include('transport/_delete_form.html.twig') }}
+{% endblock %}
+{% endblock %}

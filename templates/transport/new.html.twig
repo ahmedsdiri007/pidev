@@ -1,0 +1,15 @@
+{% extends 'backend/backbody.html.twig' %}
+
+{% block content %}
+
+
+
+{% block body %}
+    <h1>ajouter un transport</h1>
+
+    {{ include('transport/_form.html.twig') }}
+
+    <a href="{{ path('transport_index') }}">consulter ma liste</a>
+{% endblock %}
+{% endblock %}
+

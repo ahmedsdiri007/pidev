@@ -1,0 +1,57 @@
+{% extends 'frontend/headerfooterfront.html.twig' %}
+{% block content %}
+
+
+
+    <h1>Reservation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>IdReservation</th>
+                <th>TypeVehicule</th>
+                <th>Prise</th>
+                <th>Remise</th>
+                <th>DateDebut</th>
+                <th>DateFin</th>
+                <th>IdTransport</th>
+                <th>IdUser</th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+        {% for reservation in reservations %}
+            <tr>
+                <td>{{ reservation.idReservation }}</td>
+                <td>{{ reservation.typeVehicule }}</td>
+                <td>{{ reservation.prise  }}</td>
+                <td>{{ reservation.remise  }}</td>
+                <td>{{ reservation.dateDebut ? reservation.dateDebut|date('Y-m-d') : '' }}</td>
+                <td>{{ reservation.dateFin ? reservation.dateFin|date('Y-m-d') : '' }}</td>
+                <td>{{ reservation.idTransport }}</td>
+                <td>{{ reservation.idUser }}</td>
+
+                <td>
+                    <a href="{{ path('reservation_show', {'idReservation': reservation.idReservation}) }}">show</a>
+                    <a href="{{ path('reservation_edit', {'idReservation': reservation.idReservation}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+
+
+
+
+
+
+        </tbody>
+
+    </table>
+
+    <a href="{{ path('reservation_new') }}">Create new</a>
+
+{% endblock %}
