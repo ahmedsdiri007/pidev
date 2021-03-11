@@ -3,12 +3,14 @@
 namespace App\Controller;
 
 use App\Entity\Hotel;
+use App\Entity\Service;
 use App\Form\HotelType;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\ServiceRepository;
 
 class HotelController extends AbstractController
 {
@@ -63,6 +65,7 @@ class HotelController extends AbstractController
     {
         $hotel = $this->getDoctrine()->getRepository(Hotel::class)->findAll();
 
+
         $pagination = $paginator->paginate(
             $hotel,
             $request->query->getInt('page', 1), /*page number*/
@@ -112,9 +115,24 @@ class HotelController extends AbstractController
     public function detailHotel(int $idHotel): Response
     {
         $hotel = $this->getDoctrine()->getRepository(Hotel::class)->find($idHotel);
+        $Service=$this->getDoctrine()->getRepository(Service::class)->findServiceByHotel($idHotel);
 
         return $this->render("hotel/detailhotel.html.twig", [
             "h" => $hotel,
+            "s"=>$Service
+        ]);
+    }
+    /**
+     * @Route("/hotelfront/{idHotel}", name="detailfront_hotel")
+     */
+    public function detailFrontHotel(int $idHotel): Response
+    {
+        $hotel = $this->getDoctrine()->getRepository(Hotel::class)->find($idHotel);
+        $Service=$this->getDoctrine()->getRepository(Service::class)->findServiceByHotel($idHotel);
+
+        return $this->render("hotel/detailfronthotel.html.twig", [
+            "h" => $hotel,
+            "s"=>$Service
         ]);
     }
 }

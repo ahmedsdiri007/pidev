@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Hotel;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,7 +19,8 @@ class HotelType extends AbstractType
             ->add('emplacement')
             ->add('contact')
             ->add('tarif')
-            ->add('imageFile',VichImageType::class);
+            ->add('imageFile',VichImageType::class)
+
         ;
     }
 
@@ -28,4 +30,6 @@ class HotelType extends AbstractType
             'data_class' => Hotel::class,
         ]);
     }
+
+
 }

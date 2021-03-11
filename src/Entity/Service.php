@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Service
  *
- * @ORM\Table(name="service", indexes={@ORM\Index(name="fk_hotel", columns={"idhotel"})})
- * @ORM\Entity
+ * @ORM\Table(name="service")
+ * @ORM\Entity(repositoryClass="App\Repository\ServiceRepository")
  */
 class Service
 {
@@ -40,10 +40,10 @@ class Service
      *
      * @ORM\ManyToOne(targetEntity="Hotel")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idhotel", referencedColumnName="id_hotel")
+     *   @ORM\JoinColumn(name="id_hotel", referencedColumnName="id_hotel")
      * })
      */
-    private $idhotel;
+    private $idHotel;
 
     public function getIdService(): ?int
     {
@@ -74,17 +74,20 @@ class Service
         return $this;
     }
 
-    public function getIdhotel(): ?Hotel
+    public function getIdHotel(): ?Hotel
     {
-        return $this->idhotel;
+        return $this->idHotel;
     }
 
-    public function setIdhotel(?Hotel $idhotel): self
+    public function setIdHotel(?Hotel $idHotel): self
     {
-        $this->idhotel = $idhotel;
+        $this->idHotel = $idHotel;
 
         return $this;
     }
+
+
+
 
 
 }

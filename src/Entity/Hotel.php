@@ -11,7 +11,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * Hotel
  *
  * @ORM\Table(name="hotel")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\HotelRepository")
  * @Vich\Uploadable
  */
 class Hotel
@@ -52,6 +52,7 @@ class Hotel
      * @ORM\Column(name="tarif", type="float", precision=10, scale=0, nullable=false)
      */
     private $tarif;
+
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      *

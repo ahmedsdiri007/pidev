@@ -3,11 +3,11 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Reservationhotel
  *
- * @ORM\Table(name="reservationhotel", indexes={@ORM\Index(name="fk_client", columns={"id_user"}), @ORM\Index(name="fk_hotelres", columns={"id_hotel"})})
+ * @ORM\Table(name="reservationhotel")
  * @ORM\Entity
  */
 class Reservationhotel
@@ -48,6 +48,44 @@ class Reservationhotel
      * @ORM\Column(name="nb_personne", type="integer", nullable=false)
      */
     private $nbPersonne;
+
+    /**
+     * @Assert\GreaterThan("today")
+     * @ORM\Column(type="date")
+     */
+    private $dateReservation;
+
+    /**
+     * Reservationhotel constructor.
+     */
+    public function __construct()
+    {
+        $this->dateReservation= new \DateTime();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDateReservation()
+    {
+
+        return $this->dateReservation;
+    }
+
+    /**
+     * @param mixed $dateReservation
+     */
+    public function setDateReservation($dateReservation): void
+    {
+        $this->dateReservation = $dateReservation;
+        $day   = $dateReservation->format('d'); // Format the current date, take the current day (01 to 31)
+        $month = $dateReservation->format('m'); // Same with the month
+        $year  = $dateReservation->format('Y'); // Same with the year
+
+        $date = $day.'-'.$month.'-'.$year; // Return a string and not an object
+
+    }
+
 
     /**
      * @var \Client
