@@ -135,4 +135,29 @@ class HotelController extends AbstractController
             "s"=>$Service
         ]);
     }
+
+    /**
+     *@Route("/searchajax", name="ajaxsearch")
+     */
+    public function searchAction(Request $request)
+    {
+        $em=$this->getDoctrine()->getManager();
+        $requestString = $request->get('q');
+        $hotel = $em->getRepository(Hotel::class)->findEntitiesByString($requestString);
+        if(!$hotel)
+        {
+            $result['hotel']['error']="hotel introuvable :( ";
+
+        }else{
+            $result['hotel']=$this->getRealEntities($hotel);
+        }
+        return new Response(json_encode($result));
+
+    }
+    public function getRealEntities($hotel){
+        foreach ($hotel as $hotel){
+            $realEntities[$hotel->getIdHotel()] = [$hotel->getNom()];
+        }
+        return $realEntities;
+    }
 }

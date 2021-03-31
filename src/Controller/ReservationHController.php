@@ -32,14 +32,15 @@ class ReservationHController extends AbstractController
             $reservationh->setIdUser(null);
             $entityManager->persist($reservationh);
 
-           /* $basic  = new \Nexmo\Client\Credentials\Basic('e6d685d1', 'C8cBct475EEkdvXD');
+           $basic  = new \Nexmo\Client\Credentials\Basic('e6d685d1', 'C8cBct475EEkdvXD');
           $client = new \Nexmo\Client($basic);
 
           $message = $client->message()->send([
           'to' => '21650750929',
                'from' => 'Vonage APIs',
                'text' => 'reservation effectué avec success'
-            ]);*/
+            ]);
+
             $entityManager->flush();
 
             return $this->redirectToRoute('list_reservationhotel');
@@ -77,6 +78,18 @@ class ReservationHController extends AbstractController
         $reservationh = $entityManager->getRepository(Reservationhotel::class)->find($idReserv);
         $entityManager->remove($reservationh);
         $entityManager->flush();
+        return $this->redirectToRoute('list_reservationhotelback');
+    }
+
+    /**
+     * @Route("/reservationh/delete_reservationhotel/{idReserv}", name="delete_reservationhotel")
+     */
+    public function delete_reservationhotel(int $idReserv): Response
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $reservationh = $entityManager->getRepository(Reservationhotel::class)->find($idReserv);
+        $entityManager->remove($reservationh);
+        $entityManager->flush();
         return $this->redirectToRoute('list_reservationhotel');
     }
     /**
@@ -102,6 +115,65 @@ class ReservationHController extends AbstractController
             "form" => $form->createView(),
         ]);
     }
+/*
+    /**
+     * @Route("/send-notification", name="send_notification")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+  /*  public function sendNotification(Request $request)
+    {
+        $manager = $this->get('mgilet.notification');
+        $notif = $manager->createNotification('Hello world !');
+        $notif->setMessage('This a notification.');
+        $notif->setLink('http://symfony.com/');
+        // or the one-line method :
+        // $manager->createNotification('Notification subject','Some random text','http://google.fr');
+
+        // you can add a notification to a list of entities
+        // the third parameter ``$flush`` allows you to directly flush the entities
+        $manager->addNotification(array($this->getUser()), $notif, true);
+
+        return $this->redirectToRoute('homepage');
+    }*/
+
+    /**
+     * @Route("/reservation/sortAsc", name="sortASC")
+     */
+    public function sortASCService(Request $request, PaginatorInterface $paginator)
+    {
+        $Reservationhotel = $this->getDoctrine()->getRepository(Reservationhotel::class)->findBy(array(),array("nbPersonne"=>"ASC"));
+
+
+        $pagination = $paginator->paginate(
+            $Reservationhotel,
+            $request->query->getInt('page', 1), /*page number*/
+            2 /*limit per page*/
+        );
+        return $this->render("reservationhotel/SortASCreservation.html.twig", [
+            "Reservationhotel" => $pagination,
+        ]);
+
+    }
+    /**
+     * @Route("/reservation/sortDesc", name="sortDESC")
+     */
+    public function sortDESCService(Request $request, PaginatorInterface $paginator)
+    {
+        $Reservationhotel = $this->getDoctrine()->getRepository(Reservationhotel::class)->findBy(array(),array("nbPersonne"=>"DESC"));
+
+
+        $pagination = $paginator->paginate(
+            $Reservationhotel,
+            $request->query->getInt('page', 1), /*page number*/
+            2 /*limit per page*/
+        );
+        return $this->render("reservationhotel/SortDESCreservation.html.twig", [
+            "Reservationhotel" => $pagination,
+        ]);
+    }
+
+
     /**
      * @Route("/reservationhback/listReservationhb", name="list_reservationhotelback")
      */
@@ -292,7 +364,7 @@ footer {
     </footer>
   </body>
 </html>";
-                $snappy->generateFromHtml($html, 'C:\wamp64\www\pidev\pdf\ListeReservation'.$date->format("y/M/d").'.pdf');
+                $snappy->generateFromHtml($html, 'C:\wamp64\www\pidev\pdf\ListeReservation/Mar'.$date->format("y/M/d").'.pdf');
 
 
 
@@ -302,6 +374,7 @@ footer {
             "Reservationhotel" => $pagination,
         ]);
     }
+
 
 
 

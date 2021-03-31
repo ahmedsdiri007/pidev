@@ -29,10 +29,10 @@
                         <td>{{ h.nbNuit }}</td>
                         <td>{{ h.nbChambre }}</td>
                         <td>{{ h.type }}</td>
-                         <td>{{ h.dateReservation |date("m/d/Y") }}</td>}
+                        <td>{{ h.dateReservation |date("m/d/Y") }}</td>}
                         <td>{{ h.nbPersonne }}</td>
 
-                {#         <td>
+                        {#         <td>
                             <a class="btn btn-block btn-info" href="{{ path('detail_hotel',{'idHotel':h.idHotel}) }}" > detail</a>
 
                         </td>
@@ -44,7 +44,7 @@
                         </td>
 
                         </td>
-                #}
+                        #}
 
                         <td>
 
@@ -85,10 +85,7 @@
     {% endif %}
 
     <form method="get">
-        <div>
-
-            <input hidden value="TELECHARGER_PDF" name="TELECHARGER_PDF">
-            <input value="TELECHARGER_PDF" type="submit" class="add-to-cart btn btn-default" >
-        </div>
+        <input hidden value="TELECHARGER_PDF" name="TELECHARGER_PDF">
+        <input value="TELECHARGER_PDF" type="submit" class="add-to-cart btn btn-default" >
     </form>
 {% endblock content %}

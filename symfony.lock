@@ -2,6 +2,9 @@
     "composer/package-versions-deprecated": {
         "version": "1.11.99.1"
     },
+    "docdocdoc/nexmo-bundle": {
+        "version": "dev-master"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -105,6 +108,7 @@
     "knplabs/knp-paginator-bundle": {
         "version": "v5.4.2"
     },
+<<<<<<< HEAD
     "knplabs/knp-snappy": {
         "version": "v1.2.1"
     },
@@ -117,6 +121,8 @@
             "ref": "c81bdcf4a9d4e7b1959071457f9608631865d381"
         }
     },
+=======
+>>>>>>> main
     "laminas/laminas-code": {
         "version": "3.4.1"
     },
@@ -135,12 +141,15 @@
     "monolog/monolog": {
         "version": "1.26.0"
     },
+<<<<<<< HEAD
     "mpdf/mpdf": {
         "version": "v8.0.10"
     },
     "myclabs/deep-copy": {
         "version": "1.10.2"
     },
+=======
+>>>>>>> main
     "nexmo/client": {
         "version": "2.4.0"
     },
@@ -150,11 +159,16 @@
     "nikic/php-parser": {
         "version": "v4.10.4"
     },
+<<<<<<< HEAD
     "phenx/php-font-lib": {
         "version": "0.5.2"
     },
     "phenx/php-svg-lib": {
         "version": "v0.3.3"
+=======
+    "php": {
+        "version": "7.3"
+>>>>>>> main
     },
     "phpdocumentor/reflection-common": {
         "version": "2.2.0"
@@ -189,9 +203,12 @@
     "ralouphie/getallheaders": {
         "version": "3.0.3"
     },
+<<<<<<< HEAD
     "sabberworm/php-css-parser": {
         "version": "8.3.1"
     },
+=======
+>>>>>>> main
     "sensio/framework-extra-bundle": {
         "version": "5.2",
         "recipe": {
